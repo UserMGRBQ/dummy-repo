@@ -1,25 +1,18 @@
-var builder = WebApplication.CreateBuilder(args);
+using Dummy.Api.Startup;
 
-// Add services to the container.
+namespace Dummy.Api;
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-var app = builder.Build();
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+public static class Program
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    public static void Main(string[] args)
+    {
+        /// Segregation of responsability can be found in 
+        /// AppConfiguration class & DependencyInjectionSetup class
+        WebApplication
+            .CreateBuilder(args)
+            .AddDependencies()
+            .Build()
+            .ConfigureApp()
+            .Run();
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.UseAuthorization();
-
-app.MapControllers();
-
-app.Run();
