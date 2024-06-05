@@ -10,6 +10,12 @@ public class CreateUserHandler : IRequestHandler<CreateUserCommand, UserViewMode
     {
         await Task.Delay(TimeSpan.FromSeconds(5));
 
-        return new UserViewModel();
+        return new UserViewModel() 
+        {
+            Id = 1,
+            Name = request.Name,
+            Email = request.Email,
+            Document = request.Document
+        };
     }
 }
