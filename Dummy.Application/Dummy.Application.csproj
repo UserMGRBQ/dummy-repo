@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dummy.CQS\Dummy.CQS.csproj" />
+    <ProjectReference Include="..\Dummy.Persistence\Dummy.Persistence.csproj" />
   </ItemGroup>
 
 </Project>
