@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Dummy.CQS.Commands.User;
 using Dummy.CQS.Dtos;
+using Dummy.CQS.Queries.User;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,14 +20,15 @@ public class DummyUserController(IMapper mapper, IMediator mediator) : Controlle
     //    return new string[] { "value1", "value2" };
     //}
 
-    //// GET api/<DummyUserController>/5
-    //[HttpGet("{id}")]
-    //public string Get(int id)
-    //{
-    //    return "value";
-    //}
+    [HttpGet]
+    public async Task<IActionResult> Get([FromQuery] int id)
+    {
+        var query = new GetUserByIdQuery() { Id = id };
+        var viewModel = await _mediator.Send(query);
 
-    // POST api/<DummyUserController>
+        return Ok(viewModel);
+    }
+
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] UserDto dto)
     {
