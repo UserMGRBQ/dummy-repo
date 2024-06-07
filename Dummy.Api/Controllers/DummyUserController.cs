@@ -7,26 +7,20 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Dummy.Api.Controllers;
 
-[Route("api/[controller]")]
+[Route("api/dummy-user")]
 [ApiController]
 public class DummyUserController(IMapper mapper, IMediator mediator) : ControllerBase
 {
     private readonly IMapper _mapper = mapper;
     private readonly IMediator _mediator = mediator;
 
-    //[HttpGet]
-    //public IEnumerable<string> Get()
-    //{
-    //    return new string[] { "value1", "value2" };
-    //}
-
-    [HttpGet]
-    public async Task<IActionResult> Get([FromQuery] int id)
+    [HttpGet, Route("{id}")]
+    public async Task<IActionResult> Get([FromRoute] int id)
     {
         var query = new GetUserByIdQuery() { Id = id };
         var viewModel = await _mediator.Send(query);
 
-        return Ok(viewModel);
+        return StatusCode((int)viewModel.ResultType, viewModel);
     }
 
     [HttpPost]
@@ -37,16 +31,4 @@ public class DummyUserController(IMapper mapper, IMediator mediator) : Controlle
 
         return Ok(viewModel);
     }
-
-    //// PUT api/<DummyUserController>/5
-    //[HttpPut("{id}")]
-    //public void Put(int id, [FromBody] string value)
-    //{
-    //}
-
-    //// DELETE api/<DummyUserController>/5
-    //[HttpDelete("{id}")]
-    //public void Delete(int id)
-    //{
-    //}
 }

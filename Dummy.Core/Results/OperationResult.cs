@@ -8,13 +8,22 @@ public class OperationResult<T> : OperationResultBase, IOperationResult<T>
 {
     public T Data { get; set; }
 
-    public OperationResult(EnumResultType resultType) : base(resultType) { }
+    public OperationResult(EnumResultType resultType) : base(resultType)
+    {
+    }
 
-    protected OperationResult(IOperationResultBase otherResult) : base(otherResult) { }
+    protected OperationResult(IOperationResultBase otherResult) : base(otherResult)
+    {
+    }
 
-    protected OperationResult(EnumResultType resultType, Exception exception) : base(resultType, exception) { }
+    protected OperationResult(EnumResultType resultType, Exception exception) : base(resultType, exception)
+    {
+    }
 
-    protected OperationResult(EnumResultType resultType, T result) : base(resultType) { Data = result; }
+    protected OperationResult(EnumResultType resultType, T result) : base(resultType)
+    {
+        Data = result;
+    }
 
     public static IOperationResult<T> Create(EnumResultType resultType, T data)
         => new OperationResult<T>(resultType, data);
@@ -49,7 +58,9 @@ public class OperationResult<T> : OperationResultBase, IOperationResult<T>
     public new static IOperationResult<T> CreateInternalServerError(Exception exception)
         => new OperationResult<T>(EnumResultType.InternalServerError) { Exception = exception };
 
-    public new IOperationResult<T> AddMessage(string message) { _AddMessage(message); return this; }
+    public new IOperationResult<T> AddMessage(string message)
+    { _AddMessage(message); return this; }
 
-    public new IOperationResult<T> AddMessages(IEnumerable<string> messages) { _AddMessages(messages); return this; }
+    public new IOperationResult<T> AddMessages(IEnumerable<string> messages)
+    { _AddMessages(messages); return this; }
 }

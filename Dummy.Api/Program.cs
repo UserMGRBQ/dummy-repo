@@ -6,7 +6,7 @@ public static class Program
 {
     public static void Main(string[] args)
     {
-        /// Segregation of responsability can be found in 
+        /// Segregation of responsability can be found in
         /// AppConfiguration class & DependencyInjectionSetup class
         WebApplication
             .CreateBuilder(args)

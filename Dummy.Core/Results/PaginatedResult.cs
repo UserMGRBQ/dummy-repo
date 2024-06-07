@@ -1,10 +1,10 @@
 ﻿using Dummy.Core.Enums;
-using Dummy.Core.Interfaces.Results.Inputs;
 using Dummy.Core.Interfaces.Results;
-using System.ComponentModel;
-using System.Text;
+using Dummy.Core.Interfaces.Results.Inputs;
 using System.Collections;
+using System.ComponentModel;
 using System.Linq.Dynamic.Core;
+using System.Text;
 
 namespace Dummy.Core.Results;
 
@@ -15,11 +15,17 @@ public class PaginatedResult : OperationResult<IList>, IPaginatedResult
     public int Count { get; set; }
     public int Page { get; set; }
 
-    protected PaginatedResult(EnumResultType resultType) : base(resultType) { }
+    protected PaginatedResult(EnumResultType resultType) : base(resultType)
+    {
+    }
 
-    protected PaginatedResult(IOperationResultBase otherResult) : base(otherResult) { }
+    protected PaginatedResult(IOperationResultBase otherResult) : base(otherResult)
+    {
+    }
 
-    protected PaginatedResult(EnumResultType resultType, Exception exception) : base(resultType, exception) { }
+    protected PaginatedResult(EnumResultType resultType, Exception exception) : base(resultType, exception)
+    {
+    }
 
     public new static IPaginatedResult Create(IOperationResultBase otherResult)
         => new PaginatedResult(otherResult);
@@ -100,7 +106,9 @@ public class PaginatedResult : OperationResult<IList>, IPaginatedResult
         return source.OrderBy(query.ToString());
     }
 
-    public new IPaginatedResult AddMessage(string message) { _AddMessage(message); return this; }
+    public new IPaginatedResult AddMessage(string message)
+    { _AddMessage(message); return this; }
 
-    public new IPaginatedResult AddMessages(IEnumerable<string> messages) { _AddMessages(messages); return this; }
+    public new IPaginatedResult AddMessages(IEnumerable<string> messages)
+    { _AddMessages(messages); return this; }
 }

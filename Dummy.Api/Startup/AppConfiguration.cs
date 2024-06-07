@@ -2,7 +2,7 @@
 
 public static class AppConfiguration
 {
-    public static WebApplication ConfigureApp(this WebApplication app) 
+    public static WebApplication ConfigureApp(this WebApplication app)
     {
         if (app.Environment.IsDevelopment())
         {

@@ -8,18 +8,21 @@ public class OperationResultBase : IOperationResultBase
     public List<string> Messages { get; set; }
     public EnumResultType ResultType { get; set; }
     public Exception Exception { get; set; }
-    public bool IsSuccessResultType { get; set; }
+    public bool IsSuccessResultType => _IsSuccessResultType(ResultType);
 
-    public OperationResultBase(EnumResultType resultType) { ResultType = resultType; }
+    public OperationResultBase(EnumResultType resultType) 
+    { 
+        ResultType = resultType; 
+    }
 
-    public OperationResultBase(IOperationResultBase otherResult) 
+    public OperationResultBase(IOperationResultBase otherResult)
     {
         Messages = otherResult.Messages;
         ResultType = otherResult.ResultType;
         Exception = otherResult.Exception;
     }
 
-    public OperationResultBase(EnumResultType resultType, Exception exception) 
+    public OperationResultBase(EnumResultType resultType, Exception exception)
     {
         ResultType = resultType;
         Exception = exception;

@@ -6,8 +6,8 @@ namespace Dummy.Api.Profiles;
 
 public class UserProfile : Profile
 {
-	public UserProfile()
-	{
-		CreateMap<UserDto, CreateUserCommand>();
-	}
+    public UserProfile()
+    {
+        CreateMap<UserDto, CreateUserCommand>();
+    }
 }
