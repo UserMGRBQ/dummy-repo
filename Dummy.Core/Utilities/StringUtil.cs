@@ -196,7 +196,7 @@ public static class StringUtil
     /// <param name="documento">CPF(11 caracters) ou CNPJ(14 caracteres)</param>
     /// <param name="formatacaoInicial">Extrai os numeros da string</param>
     /// <returns>Documento formatado com pontuação</returns>
-    public static string FormatarDocumento(this string documento, bool formatacaoInicial = true)
+    public static string FormatDocument(this string documento, bool formatacaoInicial = true)
     {
         if (formatacaoInicial)
             documento = ExtractNumbers(documento);

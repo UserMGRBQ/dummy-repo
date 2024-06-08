@@ -15,7 +15,7 @@ public class UserModel
     {
         Name = name;
         Email = email;
-        Document = document;
+        Document = document.ExtractNumbers();
     }
 
     public IOperationResult<UserModel> IsValidUser() 
