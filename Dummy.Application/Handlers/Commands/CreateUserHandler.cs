@@ -17,18 +17,14 @@ public class CreateUserHandler(ICommandUserRepository repo) : IRequestHandler<Cr
         try
         {
             var user = new UserModel(request.Name, request.Email, request.Document);
+            var validUser = user.IsValidUser();
 
-            // validate user info before repo insert
+            if (!validUser.IsSuccessResultType)
+                return OperationResult<UserViewModel>.CreateInvalidInput().AddMessages(validUser.Messages);
 
             await _userRepo.AddAsync(user);
 
-            return OperationResult<UserViewModel>.CreateSuccess(new UserViewModel()
-            {
-                Id = user.Id,
-                Name = user.Name,
-                Email = user.Email,
-                Document = user.Document,
-            });
+            return OperationResult<UserViewModel>.CreateSuccess(new UserViewModel(user));
         }
         catch (Exception e)
         {

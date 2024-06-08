@@ -20,12 +20,6 @@ public class GetUserByIdHandler(IQueryUserRepository repo) : IRequestHandler<Get
         if (user == null)
             return OperationResult<UserViewModel>.CreateInvalidInput().AddMessage("User not found!");
 
-        return OperationResult<UserViewModel>.CreateSuccess(new UserViewModel()
-        {
-            Id = user.Id,
-            Name = user.Name,
-            Email = user.Email,
-            Document = user.Document,
-        });
+        return OperationResult<UserViewModel>.CreateSuccess(new UserViewModel(user));
     }
 }
