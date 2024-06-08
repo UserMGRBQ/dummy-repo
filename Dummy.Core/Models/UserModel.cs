@@ -1,4 +1,8 @@
-﻿namespace Dummy.Core.Models;
+﻿using Dummy.Core.Interfaces.Results;
+using Dummy.Core.Utilities;
+using Dummy.Core.Validations;
+
+namespace Dummy.Core.Models;
 
 public class UserModel
 {
@@ -12,5 +16,10 @@ public class UserModel
         Name = name;
         Email = email;
         Document = document;
+    }
+
+    public IOperationResult<UserModel> IsValidUser() 
+    {
+        return new UserModelValidation().Validate(this).ToOperationResult(this);
     }
 }

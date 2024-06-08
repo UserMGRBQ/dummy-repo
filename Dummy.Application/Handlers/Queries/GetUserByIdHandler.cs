@@ -1,30 +1,25 @@
-﻿using Dummy.Core.Interfaces.Repository;
-using Dummy.Core.Interfaces.Repository.Queries;
+﻿using Dummy.Core.Interfaces.Repository.Queries;
+using Dummy.Core.Interfaces.Results;
+using Dummy.Core.Results;
 using Dummy.CQS.Queries.User;
 using Dummy.CQS.ViewModels;
 using MediatR;
 
 namespace Dummy.Application.Handlers.Queries;
 
-public class GetUserByIdHandler(IQueryUserRepository repo) : IRequestHandler<GetUserByIdQuery, UserViewModel>
+public class GetUserByIdHandler(IQueryUserRepository repo) : IRequestHandler<GetUserByIdQuery, IOperationResult<UserViewModel>>
 {
     private readonly IQueryUserRepository _repo = repo;
 
-    public async Task<UserViewModel> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
+    public async Task<IOperationResult<UserViewModel>> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
     {
-        var user = _repo.GetByIdAsync(request.Id);
+        // validate if request.Id is a valid id
 
-        //validate user
-        //do something else
+        var user = await _repo.GetByIdAsync(request.Id);
 
-        var userFound = await user;
+        if (user == null)
+            return OperationResult<UserViewModel>.CreateInvalidInput().AddMessage("User not found!");
 
-        return new UserViewModel()
-        {
-            Id = userFound.Id,
-            Name = userFound.Name,
-            Email = userFound.Email,
-            Document = userFound.Document,
-        };
+        return OperationResult<UserViewModel>.CreateSuccess(new UserViewModel(user));
     }
 }

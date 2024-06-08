@@ -5,7 +5,7 @@ namespace Dummy.Application.Extensions;
 
 public static class ApplicationExtensions
 {
-    public static IServiceCollection AddDummyApplication(this IServiceCollection services) 
+    public static IServiceCollection AddDummyApplication(this IServiceCollection services)
     {
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly()));
 

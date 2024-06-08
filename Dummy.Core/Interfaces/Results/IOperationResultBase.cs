@@ -10,5 +10,6 @@ public interface IOperationResultBase
     bool IsSuccessResultType { get; }
 
     IOperationResultBase AddMessage(string message);
+
     IOperationResultBase AddMessages(IEnumerable<string> message);
 }

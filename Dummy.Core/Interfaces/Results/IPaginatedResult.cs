@@ -11,6 +11,8 @@ public interface IPaginatedResult : IOperationResult<IList>
     int Page { get; set; }
 
     void Paginate<TSource, TResult>(IPagination pagination, IQueryable<TSource> source, Func<TSource, TResult> selectFunction);
+
     new IPaginatedResult AddMessage(string message);
+
     new IPaginatedResult AddMessages(IEnumerable<string> messages);
 }

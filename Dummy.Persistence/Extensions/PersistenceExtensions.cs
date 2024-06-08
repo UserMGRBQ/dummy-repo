@@ -1,11 +1,11 @@
 ﻿using Dummy.Core.Interfaces.Repository.Commands;
 using Dummy.Core.Interfaces.Repository.Queries;
-using Microsoft.Extensions.DependencyInjection;
+using Dummy.Persistence.Contexts;
 using Dummy.Persistence.Repositories.Commands;
 using Dummy.Persistence.Repositories.Queries;
-using Microsoft.Extensions.Configuration;
 using Microsoft.EntityFrameworkCore;
-using Dummy.Persistence.Contexts;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Dummy.Persistence.Extensions;
 
