@@ -1,6 +1,7 @@
 ﻿using Dummy.Application.Extensions;
 using Dummy.Core.Utilities;
 using Dummy.Persistence.Extensions;
+using Dummy.Services.Extensions;
 using System.Reflection;
 
 namespace Dummy.Api.Startup;
@@ -22,8 +23,7 @@ public static class DependencyInjectionSetup
         builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
         builder.Services.AddDummyApplication();
         builder.Services.AddDummyPersistence();
-
-        
+        builder.Services.AddDummyServices();
 
         return builder;
     }
