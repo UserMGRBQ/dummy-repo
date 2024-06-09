@@ -1,4 +1,5 @@
 ﻿using Dummy.Core.Models;
+using Dummy.Core.Utilities;
 
 namespace Dummy.CQS.ViewModels;
 
@@ -14,6 +15,6 @@ public class UserViewModel
         Id = model.Id;
         Name = model.Name;
         Email = model.Email;
-        Document = model.Document;
+        Document = model.Document.FormatDocument();
     }
 }
