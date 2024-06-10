@@ -4,16 +4,9 @@ using MassTransit;
 
 namespace Dummy.Services.RabbitMqServices;
 
-public class UserQueue(IPublishEndpoint endpoint) : IConsumer<UserModel>, IUserQueue
+public class UserQueue(IPublishEndpoint endpoint) : IUserQueue
 {
     private readonly IPublishEndpoint _endpoint = endpoint;
-
-    public async Task Consume(ConsumeContext<UserModel> context)
-    {
-        var model = context.Message;
-
-        await Task.CompletedTask;
-    }
 
     public async Task Send(UserModel model)
     {
