@@ -12,10 +12,7 @@ public static class DependencyInjectionSetup
     {
         builder.Services
             .AddControllers()
-            .AddJsonOptions(options =>
-            {
-                options.JsonSerializerOptions.Converters.Add(new ExceptionJsonConverter());
-            });
+            .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new ExceptionJsonConverter()));
 
         builder.Services.AddEndpointsApiExplorer();
         builder.Services.AddSwaggerGen();

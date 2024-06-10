@@ -11,8 +11,6 @@ public static class ServicesExtensions
     {
         services.AddMassTransit(x =>
         {
-            x.AddConsumer<UserQueue>();
-
             x.UsingRabbitMq((context, cfg) =>
             {
                 cfg.Host("localhost", 1572, "/", h => {
