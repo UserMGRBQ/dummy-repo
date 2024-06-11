@@ -1,7 +1,7 @@
-﻿using Dummy.Core.Interfaces.Repository.Base;
+﻿using Dummy.Core.Interfaces.Repositories.Base;
 using Dummy.Core.Models;
 
-namespace Dummy.Core.Interfaces.Repository.Commands;
+namespace Dummy.Core.Interfaces.Repositories.Commands;
 
 public interface ICommandUserRepository : IBaseCommandRepository<UserModel, int>
 {
