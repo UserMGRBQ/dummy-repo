@@ -1,4 +1,4 @@
-﻿using Dummy.Core.Interfaces.Repository.Commands;
+﻿using Dummy.Core.Interfaces.Repositories.Commands;
 using Dummy.Core.Models;
 using Dummy.Persistence.Contexts;
 using Dummy.Persistence.Repositories.Base;

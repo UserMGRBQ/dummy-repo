@@ -1,4 +1,4 @@
-﻿using Dummy.Core.Interfaces.Repository.Queries;
+﻿using Dummy.Core.Interfaces.Repositories.Queries;
 using Dummy.Core.Interfaces.Results;
 using Dummy.Core.Results;
 using Dummy.CQS.Queries.User;

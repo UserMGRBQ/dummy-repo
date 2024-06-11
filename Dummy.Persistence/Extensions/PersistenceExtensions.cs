@@ -1,5 +1,5 @@
-﻿using Dummy.Core.Interfaces.Repository.Commands;
-using Dummy.Core.Interfaces.Repository.Queries;
+﻿using Dummy.Core.Interfaces.Repositories.Commands;
+using Dummy.Core.Interfaces.Repositories.Queries;
 using Dummy.Persistence.Contexts;
 using Dummy.Persistence.Repositories.Commands;
 using Dummy.Persistence.Repositories.Queries;

@@ -1,4 +1,4 @@
-﻿namespace Dummy.Core.Interfaces.Repository.Base;
+﻿namespace Dummy.Core.Interfaces.Repositories.Base;
 
 public interface IBaseCommandRepository<T, Tid>
     where T : class

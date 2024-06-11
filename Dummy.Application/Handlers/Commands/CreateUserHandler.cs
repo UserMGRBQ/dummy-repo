@@ -1,5 +1,5 @@
 ﻿using Dummy.Core.Interfaces.RabbitMqServices;
-using Dummy.Core.Interfaces.Repository.Commands;
+using Dummy.Core.Interfaces.Repositories.Commands;
 using Dummy.Core.Interfaces.Results;
 using Dummy.Core.Models;
 using Dummy.Core.Results;

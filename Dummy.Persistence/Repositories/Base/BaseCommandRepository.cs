@@ -1,4 +1,4 @@
-﻿using Dummy.Core.Interfaces.Repository.Base;
+﻿using Dummy.Core.Interfaces.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dummy.Persistence.Repositories.Base;
