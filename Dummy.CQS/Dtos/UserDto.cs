@@ -1,6 +1,9 @@
-﻿namespace Dummy.CQS.Dtos;
+﻿using Dummy.Core.Abstract.CommandQuery;
+using Dummy.Core.Models;
 
-public class UserDto
+namespace Dummy.CQS.Dtos;
+
+public class UserDto : CQSDto<UserModel, int>
 {
     public string Name { get; set; }
     public string Email { get; set; }

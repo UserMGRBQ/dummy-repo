@@ -13,13 +13,18 @@ public class GetUserByIdHandler(IQueryUserRepository repo) : IRequestHandler<Get
 
     public async Task<IOperationResult<UserViewModel>> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
     {
-        // validate if request.Id is a valid id
+        try
+        {
+            var userModel = await _repo.GetByIdAsync(request.Id);
 
-        var user = await _repo.GetByIdAsync(request.Id);
+            if (userModel == null)
+                return OperationResult<UserViewModel>.CreateInvalidInput().AddMessage("User not found!");
 
-        if (user == null)
-            return OperationResult<UserViewModel>.CreateInvalidInput().AddMessage("User not found!");
-
-        return OperationResult<UserViewModel>.CreateSuccess(new UserViewModel(user));
+            return OperationResult<UserViewModel>.CreateSuccess(new UserViewModel(userModel));
+        }
+        catch (Exception e)
+        {
+            return OperationResult<UserViewModel>.CreateInternalServerError(e).AddMessage("There has been an error while trying to obtain the user.");
+        }
     }
 }

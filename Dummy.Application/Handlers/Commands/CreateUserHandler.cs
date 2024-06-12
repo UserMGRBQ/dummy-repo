@@ -1,6 +1,7 @@
 ﻿using Dummy.Core.Interfaces.RabbitMqServices;
 using Dummy.Core.Interfaces.Repositories.Commands;
 using Dummy.Core.Interfaces.Results;
+using Dummy.Core.Extensions;
 using Dummy.Core.Models;
 using Dummy.Core.Results;
 using Dummy.CQS.Commands.User;
@@ -18,16 +19,23 @@ public class CreateUserHandler(ICommandUserRepository repo, IUserQueue userQueue
     {
         try
         {
-            var user = new UserModel(request.Name, request.Email, request.Document);
-            var validUser = user.IsValidUser();
+            var userModel = new UserModel(request.Name, request.Email, request.Document);
+            var validUser = userModel.IsValid();
 
             if (!validUser.IsSuccessResultType)
                 return OperationResult<UserViewModel>.CreateInvalidInput().AddMessages(validUser.Messages);
+            else 
+            {
+                var entityUser = userModel.Sanitize();
 
-            await _userQueue.Send(user);
-            await _userRepo.AddAsync(user);
+                await _userQueue.Send(entityUser);
+                await _userRepo.AddAsync(entityUser);
+            }
 
-            return OperationResult<UserViewModel>.CreateSuccess(new UserViewModel(user));
+            var viewModelUser = new UserViewModel(userModel);
+            var response = viewModelUser.FormatToResponse();
+
+            return OperationResult<UserViewModel>.CreateSuccess((UserViewModel)response);
         }
         catch (Exception e)
         {

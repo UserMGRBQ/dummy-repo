@@ -1,7 +1,9 @@
-﻿namespace Dummy.Core.Interfaces.Repositories.Base;
+﻿using Dummy.Core.Abstract.Entity;
+
+namespace Dummy.Core.Interfaces.Repositories.Base;
 
 public interface IBaseCommandRepository<T, Tid>
-    where T : class
+    where T : AbstractEntity<T, Tid>
     where Tid : IEquatable<Tid>
 {
     Task AddAsync(T entity);
