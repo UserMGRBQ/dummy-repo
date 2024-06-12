@@ -1,10 +1,11 @@
-﻿using Dummy.Core.Interfaces.Repositories.Base;
+﻿using Dummy.Core.Abstract.Entity;
+using Dummy.Core.Interfaces.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace Dummy.Persistence.Repositories.Base;
 
 public class BaseCommandRepository<T, Tid>(DbContext context) : IBaseCommandRepository<T, Tid>
-    where T : class
+    where T : AbstractEntity<T, Tid>
     where Tid : IEquatable<Tid>
 {
     protected readonly DbContext Db = context ?? throw new ArgumentNullException("There has been an error while trying to create a connection.");

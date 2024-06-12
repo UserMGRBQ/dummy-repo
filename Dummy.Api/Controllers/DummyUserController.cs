@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Dummy.CQS.Commands.User;
 using Dummy.CQS.Dtos;
+using Dummy.CQS.Objects;
 using Dummy.CQS.Queries.User;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
@@ -24,11 +25,14 @@ public class DummyUserController(IMapper mapper, IMediator mediator) : Controlle
     }
 
     [HttpPost]
-    public async Task<IActionResult> Post([FromBody] UserDto dto)
+    public async Task<IActionResult> Post([FromBody] UserObj obj)
     {
-        var command = _mapper.Map<UserDto, CreateUserCommand>(dto);
-        var viewModel = await _mediator.Send(command);
+        var commandQueryBus = 
+            _mapper.Map<UserDto, CreateUserCommand>(
+                _mapper.Map<UserObj, UserDto>(obj));
 
-        return Ok(viewModel);
+        var response = await _mediator.Send(commandQueryBus);
+
+        return StatusCode((int)response.ResultType, response);
     }
 }
