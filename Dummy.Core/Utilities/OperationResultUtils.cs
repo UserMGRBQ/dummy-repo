@@ -6,7 +6,7 @@ namespace Dummy.Core.Utilities;
 
 public static class OperationResultUtils
 {
-    public static IOperationResult<T> ToOperationResult<T>(this ValidationResult result, T obj) 
+    public static IOperationResult<T> ToOperationResult<T>(this ValidationResult result, T obj)
     {
         if (result.IsValid)
             return OperationResult<T>.CreateSuccess(obj);
@@ -14,7 +14,7 @@ public static class OperationResultUtils
             return OperationResult<T>.CreateInvalidInput().AddMessages(result.Errors.ToOperationResultMessages());
     }
 
-    private static List<string> ToOperationResultMessages(this List<ValidationFailure> errors) 
+    private static List<string> ToOperationResultMessages(this List<ValidationFailure> errors)
     {
         var response = new List<string>();
 
@@ -22,7 +22,7 @@ public static class OperationResultUtils
         {
             response.Add(error.ErrorMessage);
         }
-        
+
         return response;
     }
 }

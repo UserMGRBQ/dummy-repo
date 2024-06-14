@@ -10,9 +10,9 @@ public class OperationResultBase : IOperationResultBase
     public Exception Exception { get; set; }
     public bool IsSuccessResultType => _IsSuccessResultType(ResultType);
 
-    public OperationResultBase(EnumResultType resultType) 
-    { 
-        ResultType = resultType; 
+    public OperationResultBase(EnumResultType resultType)
+    {
+        ResultType = resultType;
     }
 
     public OperationResultBase(IOperationResultBase otherResult)

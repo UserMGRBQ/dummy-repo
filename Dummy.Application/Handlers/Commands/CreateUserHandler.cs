@@ -1,7 +1,6 @@
 ﻿using Dummy.Core.Interfaces.RabbitMqServices;
 using Dummy.Core.Interfaces.Repositories.Commands;
 using Dummy.Core.Interfaces.Results;
-using Dummy.Core.Extensions;
 using Dummy.Core.Models;
 using Dummy.Core.Results;
 using Dummy.CQS.Commands.User;
@@ -24,7 +23,7 @@ public class CreateUserHandler(ICommandUserRepository repo, IUserQueue userQueue
 
             if (!validUser.IsSuccessResultType)
                 return OperationResult<UserViewModel>.CreateInvalidInput().AddMessages(validUser.Messages);
-            else 
+            else
             {
                 var entityUser = userModel.Sanitize();
 

@@ -9,6 +9,6 @@ public abstract class AbstractEntity<TEntity, TId>
     public abstract TId Id { get; set; }
 
     public abstract IOperationResult<TEntity> IsValid();
+
     public abstract TEntity Sanitize();
 }
-

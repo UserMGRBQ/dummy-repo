@@ -20,7 +20,7 @@ public class UserModel : AbstractEntity<UserModel, int>
         Document = document;
     }
 
-    public override IOperationResult<UserModel> IsValid() 
+    public override IOperationResult<UserModel> IsValid()
     {
         return new UserModelValidation().Validate(this).ToOperationResult(this);
     }
