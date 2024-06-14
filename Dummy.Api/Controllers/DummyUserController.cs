@@ -27,7 +27,7 @@ public class DummyUserController(IMapper mapper, IMediator mediator) : Controlle
     [HttpPost]
     public async Task<IActionResult> Post([FromBody] UserObj obj)
     {
-        var commandQueryBus = 
+        var commandQueryBus =
             _mapper.Map<UserDto, CreateUserCommand>(
                 _mapper.Map<UserObj, UserDto>(obj));
 
